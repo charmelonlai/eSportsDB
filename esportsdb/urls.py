@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from esports.views import FrontPageView
+from esports import views
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', FrontPageView.as_view()),
+    url(r'^$', views.index, name='index'),
 ]

@@ -20,9 +20,15 @@ class Game(models.Model):
 
 	esrb_rating = models.CharField(max_length = 1, choices = ESRB_CHOICES)
 
+	def __unicode__(self):
+		return self.game_name
+
 class Organization(models.Model):
 	org_name = models.CharField(max_length=20)
 	date_found = models.DateField()
+
+	def __unicode__(self):
+		return self.org_name
 
 class Team(models.Model):
 	game = models.ForeignKey(Game, on_delete=models.CASCADE)
@@ -32,6 +38,9 @@ class Team(models.Model):
 	logo = models.URLField()
 	team_location = models.CharField(max_length=20)
 	team_coach = models.CharField(max_length=20)
+
+	def __unicode__(self):
+		return self.team_name
 
 class Player(models.Model):
 	team = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -53,6 +62,9 @@ class Player(models.Model):
 
 	player_status = models.CharField(max_length=20,choices = STATUS_CHOICES)
 
+	def __unicode__(self):
+		return self.player_name
+
 
 
 class Tournament(models.Model):
@@ -64,6 +76,9 @@ class Tournament(models.Model):
 	first_place = models.CharField(max_length=20)
 	second_place = models.CharField(max_length=20)
 	third_place = models.CharField(max_length=20)
+
+	def __unicode__(self):
+		return self.tourney_name
 
 class Prize(models.Model):
 	tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
